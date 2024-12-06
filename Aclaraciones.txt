@@ -59,19 +59,19 @@ Crear los directorios locales mediante los siguientes comandos:
 Compilar los archivos .po a .mo mediante los siguientes comandos:
 
     # Castellano
-    msgfmt -c -v -o /usr/local/share/locale/es/LC_MESSAGES/intlapp.mo po/es.po
+    sudo msgfmt -c -v -o /usr/local/share/locale/es/LC_MESSAGES/intlapp.mo po/es.po
 
     # Catalán
-    msgfmt -c -v -o /usr/local/share/locale/ca/LC_MESSAGES/intlapp.mo po/ca.po
+    sudo msgfmt -c -v -o /usr/local/share/locale/ca/LC_MESSAGES/intlapp.mo po/ca.po
 
     # Inglés
-    msgfmt -c -v -o /usr/local/share/locale/en/LC_MESSAGES/intlapp.mo po/en.po
+    sudo msgfmt -c -v -o /usr/local/share/locale/en/LC_MESSAGES/intlapp.mo po/en.po
 
     # Francés
-    msgfmt -c -v -o /usr/local/share/locale/fr/LC_MESSAGES/intlapp.mo po/fr.po
+    sudo msgfmt -c -v -o /usr/local/share/locale/fr/LC_MESSAGES/intlapp.mo po/fr.po
 
     # Alemán
-    msgfmt -c -v -o /usr/local/share/locale/de/LC_MESSAGES/intlapp.mo po/de.po
+    sudo msgfmt -c -v -o /usr/local/share/locale/de/LC_MESSAGES/intlapp.mo po/de.po
 
 
 Para verificaer que los archivos .mo se han creado correctamente en las rutas especificadas, ejecutar:
@@ -266,19 +266,19 @@ PASO 4
 -. Compilar Nuevamente los Archivos .mo:
 
     # Castellano
-    msgfmt -c -v -o /usr/local/share/locale/es/LC_MESSAGES/intlapp.mo po/es.po
+    sudo msgfmt -c -v -o /usr/local/share/locale/es/LC_MESSAGES/intlapp.mo po/es.po
 
     # Catalán
-    msgfmt -c -v -o /usr/local/share/locale/ca/LC_MESSAGES/intlapp.mo po/ca.po
+    sudo msgfmt -c -v -o /usr/local/share/locale/ca/LC_MESSAGES/intlapp.mo po/ca.po
 
     # Inglés
-    msgfmt -c -v -o /usr/local/share/locale/en/LC_MESSAGES/intlapp.mo po/en.po
+    sudo msgfmt -c -v -o /usr/local/share/locale/en/LC_MESSAGES/intlapp.mo po/en.po
 
     # Francés
-    msgfmt -c -v -o /usr/local/share/locale/fr/LC_MESSAGES/intlapp.mo po/fr.po
+    sudo msgfmt -c -v -o /usr/local/share/locale/fr/LC_MESSAGES/intlapp.mo po/fr.po
 
     # Alemán
-    msgfmt -c -v -o /usr/local/share/locale/de/LC_MESSAGES/intlapp.mo po/de.po
+    sudo msgfmt -c -v -o /usr/local/share/locale/de/LC_MESSAGES/intlapp.mo po/de.po
 
 
 
