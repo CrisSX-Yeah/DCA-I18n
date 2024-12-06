@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: i 18n_c_proyecto\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-06 21:09+0100\n"
+"POT-Creation-Date: 2024-12-06 21:44+0100\n"
 "PO-Revision-Date: 2024-12-06 21:11+0100\n"
 "Last-Translator:  <bledyx@bledyx-laptop.>\n"
 "Language-Team: German\n"
@@ -34,5 +34,8 @@ msgstr "Anwendung beendet\n"
 
 #: src/main.c:20
 #, c-format
-msgid "Aplicación borrada\n"
-msgstr "Anwendung gelöscht\n"
+msgid "Aplicación actualizada\n"
+msgstr "Anwendung aktualisiert\n"
+
+#~ msgid "Aplicación borrada\n"
+#~ msgstr "Anwendung gelöscht\n"

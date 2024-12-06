@@ -17,7 +17,7 @@ int main(int argc, char *argv[]) {
     printf(_("Aplicación creada\n"));
     printf(_("Aplicación comenzada\n"));
     printf(_("Aplicación terminada\n"));
-    printf(_("Aplicación borrada\n"));
+    printf(_("Aplicación actualizada\n"));
 
     return 0;
 }
