@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": false,
-      "cwd": "/home/bledyx/home/UA/cuarto/primer-cuatri/DCA/practicas/DCA-I18n/i18n_c_proyecto/src",
-      "program": "/home/bledyx/home/UA/cuarto/primer-cuatri/DCA/practicas/DCA-I18n/i18n_c_proyecto/src/build/Debug/outDebug",
+      "cwd": "/home/bledyx/home/UA/cuarto/primer-cuatri/DCA/practicas/DCA-I18n/i18n_c_proyecto/primera-version/src",
+      "program": "/home/bledyx/home/UA/cuarto/primer-cuatri/DCA/practicas/DCA-I18n/i18n_c_proyecto/primera-version/src/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
