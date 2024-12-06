@@ -1,0 +1,372 @@
+Práctica 8 DCA - Alumno - DNI: 05988721G - NOMBRE: Cristian Andrés Córdoba Silvestre
+
+
+------- INTRODUCCIÓN -------
+
+Para la realización de esta práctica, se ha desarrollado un programa sencillo en C, a partir del cual se van a traducir 4 mensajes en los siguientes idiomas: catalán, inglés, francés y alemán.
+
+
+------- INSTRUCCIONES PARA EVALUAR CORRECTAMENTE LA PRÁCTICA -------
+
+-. Paso 1
+
+Instalarse lo siguiente (Estos programas ya están instalados en los ordenadores del laboratorio):
+
+    sudo apt install -y locales gettext build-essential 
+
+-. Paso 2
+    
+Abrir el fichero /etc/locale.gen y descomentar las siguientes líneas (Usando nano se pueden buscar los nombres exactos de las líneas haciendo ctrl + W)
+
+
+    nano /etc/locale.gen
+
+
+Las líneas a descomentar son las siguientes:
+
+    ca_ES.UTF-8 UTF-8   #(catalán)
+    de_DE.UTF-8 UTF-8   #(alemán)
+    en_US.UTF-8 UTF-8   #(inglés)
+    es_ES.UTF-8 UTF-8   #(español)
+    fr_FR.UTF-8 UTF-8   #(francés)
+
+
+-. Paso 3
+
+Generar los locales ejecutando el siguiente comando:
+
+    sudo locale-gen
+
+Para verificar que los locales estén disponibles, ejecutar el siguiente comando:
+
+    locale -a
+
+
+-. Paso 4
+
+Crear los directorios locales mediante los siguientes comandos:
+
+    sudo mkdir -p /usr/local/share/locale/es/LC_MESSAGES
+    sudo mkdir -p /usr/local/share/locale/ca/LC_MESSAGES
+    sudo mkdir -p /usr/local/share/locale/en/LC_MESSAGES
+    sudo mkdir -p /usr/local/share/locale/fr/LC_MESSAGES
+    sudo mkdir -p /usr/local/share/locale/de/LC_MESSAGES
+
+
+-. Paso 5
+
+Compilar los archivos .po a .mo mediante los siguientes comandos:
+
+    # Castellano
+    msgfmt -c -v -o /usr/local/share/locale/es/LC_MESSAGES/intlapp.mo po/es.po
+
+    # Catalán
+    msgfmt -c -v -o /usr/local/share/locale/ca/LC_MESSAGES/intlapp.mo po/ca.po
+
+    # Inglés
+    msgfmt -c -v -o /usr/local/share/locale/en/LC_MESSAGES/intlapp.mo po/en.po
+
+    # Francés
+    msgfmt -c -v -o /usr/local/share/locale/fr/LC_MESSAGES/intlapp.mo po/fr.po
+
+    # Alemán
+    msgfmt -c -v -o /usr/local/share/locale/de/LC_MESSAGES/intlapp.mo po/de.po
+
+
+Para verificaer que los archivos .mo se han creado correctamente en las rutas especificadas, ejecutar:
+
+    ls /usr/local/share/locale/*/LC_MESSAGES/intlapp.mo
+
+
+Debería verse una lista similar a:
+
+    /usr/local/share/locale/es/LC_MESSAGES/intlapp.mo
+    /usr/local/share/locale/ca/LC_MESSAGES/intlapp.mo
+    /usr/local/share/locale/en/LC_MESSAGES/intlapp.mo
+    /usr/local/share/locale/fr/LC_MESSAGES/intlapp.mo
+    /usr/local/share/locale/de/LC_MESSAGES/intlapp.mo
+
+
+Paso 6
+
+Compilar el programa:
+
+    gcc -o intlapp src/main.c -lgettextpo
+
+
+Paso 7
+
+-. Ejecutar los programas cambiando la variable de entorno LANG para probar diferentes idiomas:
+
+    # Castellano
+    LANG=es_ES.UTF-8 ./intlapp
+
+    # Catalán 
+    LANG=ca_ES.UTF-8 ./intlapp
+
+    # Inglés
+    LANG=en_US.UTF-8 ./intlapp
+
+    # Francés
+    LANG=fr_FR.UTF-8 ./intlapp
+
+    # Alemán
+    LANG=de_DE.UTF-8 ./intlapp
+
+    # Por defecto
+    ./intlapp
+
+-. Las salidas esperadas deben de ser las siguientes:
+
+    # Castellano
+
+    Aplicación creada
+    Aplicación comenzada
+    Aplicación terminada
+    Aplicación borrada
+
+
+    # Catalán
+
+    Aplicació creada
+    Aplicació començada
+    Aplicació terminada
+    Aplicació esborrada
+
+
+    # Inglés
+
+    Application created
+    Application started
+    Application terminated
+    Application deleted
+
+
+    # Francés
+
+    Application créée
+    Application démarrée
+    Application terminée
+    Application supprimée
+
+
+    # Alemán
+
+    Anwendung erstellt
+    Anwendung gestartet
+    Anwendung beendet
+    Anwendung gelöscht
+
+
+    # Por defecto
+
+    Aplicación creada
+    Aplicación comenzada
+    Aplicación terminada
+    Aplicación borrada
+
+
+
+*NOTA: Estos pasos se hacen igual de forma análoga tanto para probar la primera versión como para probar la segunda versión
+
+
+
+---- PARTE 2: HERRAMIENTA "msgmerge" ----
+
+
+-. Para la segunda versión del programa, se ha eliminado la cadena "Aplicación borrada" y se ha agregado la cadena "Aplicación actualizada"
+
+
+PASO 1
+
+Para actualizar los archivos .po, se han ejecutado los siguientes comandos:
+
+
+-. Se compila la nueva versión:
+
+    gcc -o intlapp src/main.c -lgettextpo
+
+
+-. Se extraen las nuevas cadenas y se actualizar .pot:
+
+    xgettext --from-code=UTF-8 -d intlapp -k_ -o po/intlapp.pot src/main.c
+
+
+-. Actualizar Archivos .po con msgmerge
+
+    # Castellano
+
+    msgmerge -U po/es.po po/intlapp.pot
+
+
+    # Catalan
+
+    msgmerge -U po/ca.po po/intlapp.pot
+
+
+    # Inglés
+
+    msgmerge -U po/en.po po/intlapp.pot
+
+
+    # Francés
+
+    msgmerge -U po/fr.po po/intlapp.pot
+
+
+    # Alemán
+
+    msgmerge -U po/de.po po/intlapp.pot
+
+
+PASO 2
+
+-. Tras haber hechos esto paso:
+
+    1-. Se han generado archivos .po~ Estos archivos son archivos de seguridad. Contienen el código de los archivos .po antiguos antes de haber aplicado msgstr.
+    2-. Los nuevos archivos .po han sido actualizados. Las nuevas cadenas aparecen pero no están traducidas correctamente.
+    3-. La cadena eliminada "Aplicación borrada" aparece comentada al final de cada archivo .po
+
+
+PASO 3
+
+-. Abrir cada uno de los archivos .po y agregar en msgstr la traducción correspondiente:
+
+    # ca.po
+    msgid "Aplicación actualizada\n"
+    msgstr "Aplicació actualitzada\n"
+
+
+    # es.po
+    msgid "Aplicación actualizada\n"
+    msgstr "Aplicación actualizada\n"
+
+
+    # en.po
+    msgid "Aplicación actualizada\n"
+    msgstr "Application updated\n"
+
+
+    # fr.po
+    msgid "Aplicación actualizada\n"
+    msgstr "Application mise à jour\n"
+
+
+    # de.po
+    msgid "Aplicación actualizada\n"
+    msgstr "Anwendung aktualisiert\n"
+
+
+PASO 4
+
+-. Compilar Nuevamente los Archivos .mo:
+
+    # Castellano
+    msgfmt -c -v -o /usr/local/share/locale/es/LC_MESSAGES/intlapp.mo po/es.po
+
+    # Catalán
+    msgfmt -c -v -o /usr/local/share/locale/ca/LC_MESSAGES/intlapp.mo po/ca.po
+
+    # Inglés
+    msgfmt -c -v -o /usr/local/share/locale/en/LC_MESSAGES/intlapp.mo po/en.po
+
+    # Francés
+    msgfmt -c -v -o /usr/local/share/locale/fr/LC_MESSAGES/intlapp.mo po/fr.po
+
+    # Alemán
+    msgfmt -c -v -o /usr/local/share/locale/de/LC_MESSAGES/intlapp.mo po/de.po
+
+
+
+PASO 5
+
+-. Ejecuta el programa nuevamente en diferentes idiomas para verificar las actualizaciones (de la misma forma a como se ha hecho en la primera parte).
+
+
+   # Castellano
+    LANG=es_ES.UTF-8 ./intlapp
+
+    # Catalán 
+    LANG=ca_ES.UTF-8 ./intlapp
+
+    # Inglés
+    LANG=en_US.UTF-8 ./intlapp
+
+    # Francés
+    LANG=fr_FR.UTF-8 ./intlapp
+
+    # Alemán
+    LANG=de_DE.UTF-8 ./intlapp
+
+    # Por defecto
+    ./intlapp
+
+
+    -. Las salidas esperadas deben de ser las siguientes:
+
+    # Castellano
+
+    Aplicación creada
+    Aplicación comenzada
+    Aplicación terminada
+    Aplicación actualizada
+
+
+    # Catalán
+
+    Aplicació creada
+    Aplicació començada
+    Aplicació terminada
+    Aplicació actualitzada
+
+
+    # Inglés
+
+    Application created
+    Application started
+    Application terminated
+    Application updated
+
+
+    # Francés
+
+    Application créée
+    Application démarrée
+    Application terminée
+    Application mise à jour
+
+
+    # Alemán
+
+    Anwendung erstellt
+    Anwendung gestartet
+    Anwendung beendet
+    Anwendung aktualisiert
+
+
+    # Por defecto
+
+    Aplicación creada
+    Aplicación comenzada
+    Aplicación terminada
+    Aplicación actualizada
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
