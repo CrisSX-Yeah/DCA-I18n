@@ -3,10 +3,11 @@ Práctica 8 DCA - Alumno - DNI: 05988721G - NOMBRE: Cristian Andrés Córdoba Si
 
 ------- INTRODUCCIÓN -------
 
-Para la realización de esta práctica, se ha desarrollado un programa sencillo en C, a partir del cual se van a traducir 4 mensajes en los siguientes idiomas: catalán, inglés, francés y alemán.
+Para la realización de esta práctica, se ha desarrollado un programa sencillo en C, a partir del cual se van a traducir 4 mensajes, inicialmente en español, en los siguientes idiomas: catalán, inglés, francés y alemán.
 
+Las dos versiones son prácticamente idénticas. Para la segunda versión, se ha eliminado la cadena "Aplicación borrada" y se ha agreado la cadena "Aplicación actualizada".
 
-------- INSTRUCCIONES PARA EVALUAR CORRECTAMENTE LA PRÁCTICA -------
+------- PARTE 1: INSTRUCCIONES PARA EVALUAR CORRECTAMENTE LA PRÁCTICA -------
 
 -. Paso 1
 
@@ -14,10 +15,10 @@ Instalarse lo siguiente (Estos programas ya están instalados en los ordenadores
 
     sudo apt install -y locales gettext build-essential 
 
+
 -. Paso 2
     
 Abrir el fichero /etc/locale.gen y descomentar las siguientes líneas (Usando nano se pueden buscar los nombres exactos de las líneas haciendo ctrl + W)
-
 
     nano /etc/locale.gen
 
@@ -46,11 +47,11 @@ Para verificar que los locales estén disponibles, ejecutar el siguiente comando
 
 Crear los directorios locales mediante los siguientes comandos:
 
-    sudo mkdir -p /usr/local/share/locale/es/LC_MESSAGES
-    sudo mkdir -p /usr/local/share/locale/ca/LC_MESSAGES
-    sudo mkdir -p /usr/local/share/locale/en/LC_MESSAGES
-    sudo mkdir -p /usr/local/share/locale/fr/LC_MESSAGES
-    sudo mkdir -p /usr/local/share/locale/de/LC_MESSAGES
+    sudo mkdir -p /usr/local/share/locale/es/LC_MESSAGES    # Español
+    sudo mkdir -p /usr/local/share/locale/ca/LC_MESSAGES    # Catalán
+    sudo mkdir -p /usr/local/share/locale/en/LC_MESSAGES    # Inglés
+    sudo mkdir -p /usr/local/share/locale/fr/LC_MESSAGES    # Francés
+    sudo mkdir -p /usr/local/share/locale/de/LC_MESSAGES    # Alemán
 
 
 -. Paso 5
@@ -87,7 +88,7 @@ Debería verse una lista similar a:
     /usr/local/share/locale/de/LC_MESSAGES/intlapp.mo
 
 
-Paso 6
+-. Paso 6
 
 Compilar el programa:
 
@@ -255,6 +256,9 @@ PASO 3
     # de.po
     msgid "Aplicación actualizada\n"
     msgstr "Anwendung aktualisiert\n"
+
+
+Además, dento de cada .po ha habido que eliminar la etiqueta #, fuzzy para así asegurar que la nueva cadena se incluya en los archivos .mo compilados.
 
 
 PASO 4
